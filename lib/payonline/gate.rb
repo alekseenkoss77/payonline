@@ -6,14 +6,14 @@ module Payonline
 
     attr_accessor :order_id, :amount, :lang, :order_description,
                   :valid_until, :return_url, :fail_url, :merchant_id,
-                  :private_secure_key
+                  :private_security_key
 
     def initialize(attributes={})
       attributes.each do |key,value|
         send("#{key}",value)
       end
       merchant_id = Payonline.configuration.merchant_id
-      private_secure_key = Payonline.configuration.private_secure_key
+      private_security_key = Payonline.configuration.private_security_key
       Payonline.configuration.lang ||= lang
     end
 
