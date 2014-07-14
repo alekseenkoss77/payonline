@@ -1,14 +1,14 @@
 module Payonline
   class Gate
-    include ActiveModel::Validations
-    include ActiveModel::Conversion
-    extend ActiveModel::Naming
+    #include ActiveModel::Validations
+    #include ActiveModel::Conversion
+    #extend ActiveModel::Naming
 
     attr_accessor :order_id, :amount, :lang, :order_description,
                   :valid_until, :return_url, :fail_url, :merchant_id,
                   :private_security_key
 
-    def initializer(attributes={})
+    def initialize(attributes={})
       p "Fucking Hogvards"
       attributes.each do |key,value|
         send("#{key}",value)
