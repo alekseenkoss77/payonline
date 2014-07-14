@@ -24,6 +24,7 @@ module Payonline
           link += "&#{method.to_s.classify}=#{send(method)}" if self.class.attribute_method? method
         end
       end
+      link
     end
 
     class << self
