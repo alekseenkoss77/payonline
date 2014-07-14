@@ -8,7 +8,8 @@ module Payonline
                   :valid_until, :return_url, :fail_url, :merchant_id,
                   :private_security_key
 
-    def initialize(attributes={})
+    def initializer(attributes={})
+      p "Fucking Hogvards"
       attributes.each do |key,value|
         send("#{key}",value)
       end
