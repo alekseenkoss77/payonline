@@ -1,3 +1,5 @@
+require 'payonline/gate'
+
 module Payonline
   class Configuration
     attr_accessor :merchant_id, :currency, :url, :lang
