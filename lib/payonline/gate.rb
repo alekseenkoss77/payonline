@@ -14,6 +14,7 @@ module Payonline
       @amount = "%.2f"%amount
       @merchant_id = Payonline.configuration.merchant_id
       @private_security_key = Payonline.configuration.private_security_key
+      @currency ||= Payonline.configuration.private_security_key
       Payonline.configuration.lang ||= lang
     end
 
