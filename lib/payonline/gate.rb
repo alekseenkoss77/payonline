@@ -21,7 +21,7 @@ module Payonline
         if index == 0
           link += "?MerchantId=#{send(method)}" 
         else
-          link += "&#{method.classify}=#{send(method)}" if self.class.attribute_method? method
+          link += "&#{method.to_s.classify}=#{send(method)}" if self.class.attribute_method? method
         end
       end
     end
