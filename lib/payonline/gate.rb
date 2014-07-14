@@ -5,7 +5,7 @@ module Payonline
 
     attr_accessor :order_id, :amount, :lang, :order_description,
                   :valid_until, :return_url, :fail_url, :merchant_id,
-                  :private_security_key
+                  :private_security_key, :currency
 
     def initialize(attributes={})
       attributes.each do |key,value|
