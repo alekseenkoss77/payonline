@@ -23,7 +23,8 @@ module Payonline
         if index == 0
           link += "?MerchantId=#{send(method)}" 
         else
-          link += "&#{method.to_s.classify}=#{send(method)}" if self.class.attribute_method? method
+          val = send(method) if self.class.attribute_method? method
+          link += "&#{method.to_s.classify}=#{val}" if val.present? 
         end
       end
       # get md5 hash of link url
