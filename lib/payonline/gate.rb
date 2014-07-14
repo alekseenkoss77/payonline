@@ -12,7 +12,7 @@ module Payonline
     def initialize(attributes={})
       p "Fucking Hogvards"
       attributes.each do |key,value|
-        send("#{key}",value)
+        send("#{key}=",value)
       end
       @merchant_id = Payonline.configuration.merchant_id
       @private_security_key = Payonline.configuration.private_security_key
