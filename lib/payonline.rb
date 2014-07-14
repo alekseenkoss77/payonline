@@ -8,7 +8,7 @@ module Payonline
       @merchant_id = 12345
       @currency = 'RUB' # 'RUB', 'EUR', 'USD'
       @lang = 'ru'
-      @url = "https://secure.payonlinesystem.com/#{lang}/payment/"
+      @url = "https://secure.payonlinesystem.com/#{lang}/payment"
       @private_security_key = 'fuuu123'
     end
   end
