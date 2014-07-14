@@ -3,10 +3,10 @@ module Payonline
     attr_accessor :merchant_id, :currency, :url, :lang
 
     def initialize
-      merchant_id = 12345
-      currency = 'RUB' # 'RUB', 'EUR', 'USD'
-      lang = 'ru'
-      url = "https://secure.payonlinesystem.com/#{lang}/payment/"
+      @merchant_id = 12345
+      @currency = 'RUB' # 'RUB', 'EUR', 'USD'
+      @lang = 'ru'
+      @url = "https://secure.payonlinesystem.com/#{lang}/payment/"
     end
   end
 
