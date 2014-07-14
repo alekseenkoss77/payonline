@@ -1,5 +1,6 @@
 module Payonline
   class Gate
+    include ActiveModel::Model
     #include ActiveModel::Validations
     #include ActiveModel::Conversion
     #extend ActiveModel::Naming
@@ -13,8 +14,8 @@ module Payonline
       attributes.each do |key,value|
         send("#{key}",value)
       end
-      merchant_id = Payonline.configuration.merchant_id
-      private_security_key = Payonline.configuration.private_security_key
+      @merchant_id = Payonline.configuration.merchant_id
+      @private_security_key = Payonline.configuration.private_security_key
       Payonline.configuration.lang ||= lang
     end
 
