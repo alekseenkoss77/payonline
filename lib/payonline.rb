@@ -1,6 +1,6 @@
 module Payonline
   class Configuration
-    attr_accessor :merchant_id, :currency, :valid_until, :url, :lang
+    attr_accessor :merchant_id, :currency, :url, :lang
 
     def initialize
       merchant_id = 12345
