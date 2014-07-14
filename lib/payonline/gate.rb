@@ -19,10 +19,10 @@ module Payonline
     end
 
     def link
-      link = Payonline.configuration.url
+      link = ""
       [:merchant_id, :order_id, :amount, :currency, :valid_until, :order_description].each_with_index do |method, index|
         if index == 0
-          link += "?MerchantId=#{send(method)}" 
+          link += "MerchantId=#{send(method)}" 
         else
           val = send(method) if self.class.attribute_method? method
           link += "&#{method.to_s.classify}=#{val}" if val.present? 
@@ -32,7 +32,7 @@ module Payonline
       link_private = link + "&PrivateSecurityKey=#{private_security_key}"
       md5 = Digest::MD5
       security_key = md5.hexdigest link_private
-      link += "&SecurityKey=#{security_key}"
+      link = Payonline.configuration.url + "?" + link + "&SecurityKey=#{security_key}"
     end
 
     class << self
