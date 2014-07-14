@@ -10,14 +10,15 @@ module Payonline
       attributes.each do |key,value|
         send("#{key}=",value)
       end
-      @merchant_id = Payonline.configuration.merchant_id
-      @private_security_key = Payonline.configuration.private_security_key
+      amount = "%.2f" % amount 
+      merchant_id = Payonline.configuration.merchant_id
+      private_security_key = Payonline.configuration.private_security_key
       Payonline.configuration.lang ||= lang
     end
 
     def link
       link = Payonline.configuration.url
-      [:merchant_id, :order_id, :amount, :currency, :valid_until, :order_description, :private_secure_key].each_with_index do |method, index|
+      [:merchant_id, :order_id, :amount, :currency, :valid_until, :order_description, :private_security_key].each_with_index do |method, index|
         if index == 0
           link += "?MerchantId=#{send(method)}" 
         else
