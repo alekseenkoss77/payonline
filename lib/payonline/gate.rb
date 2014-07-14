@@ -10,7 +10,7 @@ module Payonline
       attributes.each do |key,value|
         send("#{key}=",value)
       end
-      amount = "%.2f" % amount 
+      amount = "%.2f" % amount || "0.00" 
       merchant_id = Payonline.configuration.merchant_id
       private_security_key = Payonline.configuration.private_security_key
       Payonline.configuration.lang ||= lang
