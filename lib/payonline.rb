@@ -1,14 +1,12 @@
 module Payonline
   class Configuration
-    attr_accessor :merchant_id, :currency,
-                  :valid_until, :order_description
+    attr_accessor :merchant_id, :currency, :valid_until, :url, :lang
 
     def initialize
-      @merchant_id = 12345
-      # 'RUB', 'EUR', 'USD'
-      @currency = 'RUB'
-      # limit of description - 100 chars
-      @order_description = 'None'
+      merchant_id = 12345
+      currency = 'RUB' # 'RUB', 'EUR', 'USD'
+      lang = 'ru'
+      url = "https://secure.payonlinesystem.com/#{lang}/payment/"
     end
   end
 
