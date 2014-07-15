@@ -1,3 +1,5 @@
+require 'curb'
+
 module Payonline
   class Gate
     # TODO: make strong validations
@@ -75,18 +77,14 @@ module Payonline
     end
 
     def check_status
-      content_type = '&ContentType=xml'
-      link = ""
-      [:merchant_id, :order_id].each_with_index do |method, index|
-        if index == 0
-          link += "MerchantId=#{send(method)}" 
-        else
-          val = send(method) if self.class.attribute_method? method
-          link += "&#{method.to_s.classify}=#{val}" if val.present? 
-        end
-      end
-      link_private = link + "&PrivateSecurityKey=#{private_security_key}"
-      result_link = "https://secure.payonlinesystem.com/payment/search?" + link + "&SecurityKey=#{self.security_key(link_private)}" + content_type
+      url_security_key = self.security_key("MerchantId=#{self.merchant_id}&OrderId=#{self.order_id}&PrivateSecurityKey=#{self.private_security_keyr}")
+      http = Curl.get('https://secure.payonlinesystem.com/payment/search', {
+          'MerchantId'  => self.merchant_id,
+          'OrderId'     => self.order_id,
+          'SecurityKey' => self.url_security_key,
+          'ContentType' => xml 
+        })
+      http.body
     end
 
     class << self
