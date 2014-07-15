@@ -69,6 +69,7 @@ module Payonline
     end
 
     def security_key(link)
+      p link
       md5 = Digest::MD5
       security_key = md5.hexdigest link
     end
@@ -85,7 +86,7 @@ module Payonline
         end
       end
       link_private = link + "&PrivateSecurityKey=#{private_security_key}"
-      result_link = "https://secure.payonlinesystem.com/payment/search?" + link + "&TransactionId=#{self.transaction_id}&SecurityKey=#{self.security_key(link_private)}" + content_type
+      result_link = "https://secure.payonlinesystem.com/payment/search?" + link + "&SecurityKey=#{self.security_key(link_private)}" + content_type
     end
 
     class << self
