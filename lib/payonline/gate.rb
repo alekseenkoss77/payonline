@@ -85,7 +85,7 @@ module Payonline
         end
       end
       link_private = link + "&PrivateSecurityKey=#{private_security_key}"
-      result_link = "https://secure.payonlinesystem.com/payment/search?" + link + "&TransactionId=#{self.transaction_id}&SecurityKey=#{self.security_key(link)}" + content_type
+      result_link = "https://secure.payonlinesystem.com/payment/search?" + link + "&TransactionId=#{self.transaction_id}&SecurityKey=#{self.security_key(link_private)}" + content_type
     end
 
     class << self
