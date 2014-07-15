@@ -76,7 +76,7 @@ module Payonline
     def check_status
       content_type = '&ContentType=xml'
       link = ""
-      [:merchant_id, :order_id, :transaction_id].each_with_index do |method, index|
+      [:merchant_id, :order_id].each_with_index do |method, index|
         if index == 0
           link += "MerchantId=#{send(method)}" 
         else
@@ -85,7 +85,7 @@ module Payonline
         end
       end
       link_private = link + "&PrivateSecurityKey=#{private_security_key}"
-      result_link = "https://secure.payonlinesystem.com/payment/search?" + link + "&SecurityKey=#{self.security_key(link)}" + content_type
+      result_link = "https://secure.payonlinesystem.com/payment/search?" + link + "&TransactionId=#{self.transaction_id}&SecurityKey=#{self.security_key(link)}" + content_type
     end
 
     class << self
