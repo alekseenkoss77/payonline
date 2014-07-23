@@ -1,4 +1,5 @@
 require 'curb'
+require 'net/http'
 
 module Payonline
   class Gate
@@ -77,14 +78,21 @@ module Payonline
     end
 
     def check_status
-      url_security_key = self.security_key("MerchantId=#{self.merchant_id}&OrderId=#{self.order_id}&PrivateSecurityKey=#{self.private_security_keyr}")
-      http = Curl.get('https://secure.payonlinesystem.com/payment/search', {
+      url_security_key = self.security_key("MerchantId=#{self.merchant_id}&OrderId=#{self.order_id}&PrivateSecurityKey=#{self.private_security_key}")
+      params = {
           'MerchantId'  => self.merchant_id,
           'OrderId'     => self.order_id,
-          'SecurityKey' => self.url_security_key,
-          'ContentType' => xml 
-        })
-      http.body
+          'SecurityKey' => url_security_key,
+          'ContentType' => 'xml' 
+        }
+      # http = Curl.get('https://secure.payonlinesystem.com/payment/search', params)
+      # http.body
+
+      uri = URI 'https://secure.payonlinesystem.com/payment/search'
+      uri.query = URI.encode_www_form params
+      puts uri
+      res = Net::HTTP.get_response(uri)
+      puts res.body
     end
 
     class << self
