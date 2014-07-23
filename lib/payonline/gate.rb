@@ -85,14 +85,18 @@ module Payonline
           'SecurityKey' => url_security_key,
           'ContentType' => 'xml' 
         }
-      # http = Curl.get('https://secure.payonlinesystem.com/payment/search', params)
-      # http.body
+      
+      http = Curl.get('https://secure.payonlinesystem.com/payment/search', params) do |curl|
+        curl.headers['User-Agent'] = "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_7; en-US) AppleWebKit/534.16 (KHTML, like Gecko) Chrome/10.0.648.205 Safari/534.16"
+      end
 
-      uri = URI 'https://secure.payonlinesystem.com/payment/search'
-      uri.query = URI.encode_www_form params
-      puts uri
-      res = Net::HTTP.get_response(uri)
-      puts res.body
+      puts http.body
+
+      #uri = URI 'https://secure.payonlinesystem.com/payment/search'
+      #uri.query = URI.encode_www_form params
+      #puts uri
+      #res = Net::HTTP.get_response(uri)
+      #puts res.body
     end
 
     class << self
